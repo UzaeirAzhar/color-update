@@ -31,9 +31,6 @@ export default {
       colorArray: [],
     };
   },
-  mounted() {
-    // this.printEmoji();
-  },
   methods: {
     handleKeyPress: function (e) {
       if (e.key === "Enter" || e.key === " ") {
