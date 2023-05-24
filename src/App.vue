@@ -1,7 +1,7 @@
 <!-- eslint-disable no-unused-vars -->
 <!-- eslint-disable vue/valid-template-root -->
 <template>
-  <div class="header" :style="{backgroundColor: colorArray}">
+  <div class="header" :style="{ backgroundColor: colorArray }">
     <h1>{{ message }}</h1>
     <!-- <div class="header" id="emoji">
       <span>{{ emoji }}</span>
@@ -9,14 +9,6 @@
 
     <div class="header" id="subheader">
       <label class="header" id="label-color">Choose some color</label>
-      <!-- <textarea
-        name="some textarea"
-        id=""
-        cols="30"
-        rows="10"
-        placeholder="input some color"
-        @keyup.enter="handleKeyPress"
-      ></textarea> -->
       <input
         type="text"
         @keyup.enter="handleKeyPress"
