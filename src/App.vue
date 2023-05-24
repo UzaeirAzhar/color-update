@@ -1,9 +1,16 @@
 <!-- eslint-disable vue/valid-template-root -->
-<template></template>
+<template>
+  {{ message }}
+</template>
 
 <script>
 export default {
   name: "App",
+  data() {
+    return {
+      message: "Hello Uzair's World 😉",
+    };
+  },
   components: {},
 };
 </script>
