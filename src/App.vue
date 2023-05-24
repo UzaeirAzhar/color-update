@@ -26,13 +26,13 @@ export default {
   data() {
     return {
       message: "Hello Uzair's World....",
-      emoji: "",
       inputText: "",
       colorArray: [],
     };
   },
   methods: {
     handleKeyPress: function (e) {
+      console.log(e)
       if (e.key === "Enter" || e.key === " ") {
         if (this.inputText.trim() !== "") {
           this.colorArray.push(this.inputText.trim());
