@@ -1,26 +1,23 @@
+<!-- eslint-disable vue/no-unused-components -->
 <!-- eslint-disable no-unused-vars -->
 <!-- eslint-disable vue/valid-template-root -->
 <template>
-  <div class="header" :style="{ backgroundColor: colorArray }">
-    <h1>{{ message }}</h1>
-    <!-- <div class="header" id="emoji">
-      <span>{{ emoji }}</span>
-    </div> -->
-
-    <div class="header" id="subheader">
-      <label class="header" id="label-color">Choose some color</label>
-      <input
-        type="text"
-        @keyup.enter="handleKeyPress"
-        placeholder="enter some color"
-        v-model="inputText"
-      />
-    </div>
-    {{ colorArray }}
+  <div class="header" id="subheader">
+    <label class="header" id="label-color">Enter Color</label>
+    <input
+      type="text"
+      @keyup.enter="handleKeyPress"
+      placeholder="enter some color"
+      v-model="inputText"
+    />
   </div>
+
+  <HeadersForm  :message="message" :color="colorArray"/>
 </template>
 
 <script>
+import HeadersForm from "../src/components/HeadersForm.vue";
+
 export default {
   name: "App",
   data() {
@@ -32,7 +29,6 @@ export default {
   },
   methods: {
     handleKeyPress: function (e) {
-      console.log(e)
       if (e.key === "Enter" || e.key === " ") {
         if (this.inputText.trim() !== "") {
           this.colorArray.push(this.inputText.trim());
@@ -41,7 +37,7 @@ export default {
       }
     },
   },
-  components: {},
+  components: { HeadersForm },
 };
 </script>
 
