@@ -35,20 +35,6 @@ export default {
     // this.printEmoji();
   },
   methods: {
-    // eslint-disable-next-line vue/no-dupe-keys
-    // printEmoji: function () {
-    //   const messageLength = this.message.length;
-    //   const emoji = "😉";
-    //   let counter = 0;
-    //   const interval = setInterval(() => {
-    //     if (counter < messageLength) {
-    //       this.emoji += emoji;
-    //       counter++;
-    //     } else {
-    //       clearInterval(interval);
-    //     }
-    //   }, 500); // Delay between each emoji in milliseconds
-    // },
     handleKeyPress: function (e) {
       if (e.key === "Enter" || e.key === " ") {
         if (this.inputText.trim() !== "") {
