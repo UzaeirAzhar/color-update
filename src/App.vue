@@ -3,7 +3,9 @@
 <!-- eslint-disable vue/valid-template-root -->
 <template>
   <div v-if="!isColorEntered" class="header" id="subheader">
-    <label class="header" id="label-color" data-test-id="enter-color-label">Enter Color</label>
+    <label class="header" id="label-color" data-test-id="enter-color-label"
+      >Enter Color</label
+    >
     <input
       type="text"
       @keyup.enter="handleKeyPress"
@@ -11,7 +13,9 @@
       v-model="userColor"
       data-test-id="user-input-field"
     />
-    <p v-if="errorMessage" class="error" data-test-id="error-message">{{ errorMessage }}</p>
+    <p v-if="errorMessage" class="error" data-test-id="error-message">
+      {{ errorMessage }}
+    </p>
   </div>
 
   <div v-else>
@@ -43,6 +47,7 @@ export default {
           this.showError = true;
           this.errorMessage =
             "Invalid color entered. Please enter a valid color.";
+          this.userColor = "";
         }
       }
     },
