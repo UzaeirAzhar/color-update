@@ -1,6 +1,6 @@
 <template>
-  <div class="header" :style="{ color: color }">
-    <h1>{{ message }}</h1>
+  <div class="header" :style="{ color: color }" data-test-id="style-field">
+    <h1 data-test-id="colored-message">{{ message }}</h1>
   </div>
 </template>
 
@@ -8,7 +8,7 @@
 export default {
   props: {
     color: {
-      type: Array,
+      type: String,
       required: true,
     },
     message: {
