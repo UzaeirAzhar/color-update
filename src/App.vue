@@ -2,25 +2,26 @@
 <!-- eslint-disable no-unused-vars -->
 <!-- eslint-disable vue/valid-template-root -->
 <template>
-  <div v-if="!isColorEntered" class="header" id="subheader">
-    <label class="header" id="label-color" data-test-id="enter-color-label"
+  <div v-if="!isColorEntered">
+    <label class="input-label" data-test-id="enter-color-label"
       >Enter Color</label
     >
     <input
+      class="input-field"
       type="text"
+      ref="userColor"
       @keyup.enter="handleKeyPress"
       placeholder="enter some color"
       v-model="userColor"
       data-test-id="user-input-field"
     />
-    <p v-if="errorMessage" class="error" data-test-id="error-message">
+    <p v-if="showError" class="error-message" data-test-id="error-message">
       {{ errorMessage }}
     </p>
   </div>
 
   <div v-else>
-    <HeadersForm :message="message" :color="userColor" />
-    <button @click="goBack" data-test-id="home-button">Home</button>
+    <HeadersForm :message="message" :color="userColor" @goBack="goBack" />
   </div>
 </template>
 
@@ -35,6 +36,7 @@ export default {
       userColor: "",
       isColorEntered: false,
       errorMessage: "",
+      showError: false,
     };
   },
   methods: {
@@ -45,9 +47,13 @@ export default {
           this.showError = false;
         } else {
           this.showError = true;
+          this.userColor = "";
           this.errorMessage =
             "Invalid color entered. Please enter a valid color.";
-          this.userColor = "";
+          setTimeout(() => {
+            this.showError = false;
+            this.errorMessage = "";
+          }, 3000);
         }
       }
     },
@@ -65,7 +71,18 @@ export default {
     goBack: function () {
       this.isColorEntered = false;
       this.userColor = "";
+      this.setFocusOnInputField();
     },
+    setFocusOnInputField: function () {
+      this.$nextTick(() => {
+        this.$refs.userColor.focus();
+      });
+    },
+  },
+  mounted() {
+    if (!this.showError) {
+      this.setFocusOnInputField();
+    }
   },
   components: { HeadersForm },
 };
@@ -80,32 +97,23 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
-.header {
-  font-style: normal;
-  position: relative;
-}
-.subheader {
-  position: fixed;
-  margin-top: 60px;
-}
-.header span {
-  font-style: normal;
-}
-.header label input {
-  position: static;
-}
-#label-color {
-  font-style: normal;
+.input-label {
   font-size: 14px;
-  margin-right: 5px;
-  color: #2c3e50;
+  font-weight: bold;
+  margin-right: 10px;
 }
-#input-color {
-  font-style: normal;
-  font-size: 12px;
-  color: #2c3e50;
+.input-field {
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
-#emoji {
-  position: relative;
+.error-message {
+  margin-top: 8px;
+  padding: 8px;
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+  border-radius: 4px;
 }
 </style>
